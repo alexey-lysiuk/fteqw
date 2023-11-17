@@ -265,6 +265,33 @@ static void QCC_PR_PackagerMessage(void *userctx, const char *message, ...)
 
 int main (int argc, const char **argv)
 {
+
+	size_t size;
+	void *progs = QCC_ReadFile(argv[1], NULL, NULL, &size, false);
+
+	if (progs)
+	{
+		void DecompileProgsDat(char *name, void *buf, size_t bufsize);
+		DecompileProgsDat("progs.dat", progs, size);
+
+		extern vfile_t *qcc_vfiles;
+
+		while(qcc_vfiles)
+		{
+			vfile_t *f = qcc_vfiles;
+			qcc_vfiles = f->next;
+
+			QCC_WriteFile(f->filename, f->file, f->size);
+
+			free(f->file);
+			free(f);
+		}
+
+		return 0;
+	}
+
+
+
 	unsigned int i;
 	pbool sucess;
 #if 0//def _WIN32
