@@ -1134,8 +1134,8 @@ ELSE()
 			engine/qclib/qcc_pr_comp.c
 			engine/qclib/qcc_pr_lex.c
 			engine/qclib/qccmain.c
-			engine/qclib/qcd_main.c
-			engine/qclib/packager.c
+#			engine/qclib/qcd_main.c
+#			engine/qclib/packager.c
 			engine/qclib/decomp.c
 		)
 		SET_TARGET_PROPERTIES(fteqcc PROPERTIES COMPILE_DEFINITIONS "${FTE_LIB_DEFINES};${FTE_REVISON}")
